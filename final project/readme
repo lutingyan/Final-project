@@ -1,1 +1,44 @@
+Color-Based Line Tracking Robot
+This project implements an autonomous robot car using a Raspberry Pi camera and PiCar-4WD, capable of tracking color-coded paths and detecting stop signs using computer vision. It uses OpenCV for image processing and records the movement trajectory with optional visualization.
 
+🔧 Dependencies
+Install required packages with:
+
+pip install opencv-python numpy matplotlib picar-4wd
+🎨 Supported Colors (HSV)
+Used for path tracking:
+
+Orange
+
+Blue
+
+Purple
+
+Used for stop sign detection:
+
+Red (via two HSV ranges for red)
+
+🚦 Behavior Logi
+Color Detection: Focuses on the bottom 30% of the image to identify the dominant color.
+
+Direction Estimation:
+
+Left of center → turn_left()
+
+Right of center → turn_right()
+
+Centered → go_forward()
+
+Stop Sign Detection: If the red area exceeds 5% of the image, the car stops.
+
+Line Loss Handling: If the line is lost for too long, the robot pauses until it sees the line again.
+
+Path Logging: Movement history is recorded and visualized using Matplotlib.
+
+▶️ How to Run
+Make sure your camera and PiCar-4WD are connected and then run:
+
+bash
+
+python control.py
+Press q to exit the program at any time.
